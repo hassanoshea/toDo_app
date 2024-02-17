@@ -20,3 +20,8 @@ flutter:
 
   assets:
     - assets/images/logo.png
+    - assets/icon/app_icon.png
+    - assets/images/no_tasks.png
+    -	assets/images/on1.png
+    -	assets/images/on2.png
+    -	assets/images/on3.png
