@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:to_do_app/core/theme/theme.dart';
 import 'package:to_do_app/feature/auth/screens/splash_screen.dart';
 
 class ToDoApp extends StatelessWidget {
@@ -7,9 +8,12 @@ class ToDoApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const MaterialApp(
+    return   MaterialApp(
+      theme: getAppTheme(),
+      darkTheme: getAppDarkTheme(),
+      themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      home: SplashScreen()
+      home: const SplashScreen()
     );
     
   }

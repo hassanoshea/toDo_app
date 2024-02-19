@@ -22,24 +22,23 @@ class _SplashScreenState extends State<SplashScreen> {
   void navigate (){
     Future.delayed(const Duration(seconds: 5),(){
       Navigator.pushReplacement(context, 
-      MaterialPageRoute(builder:(context) => const OnBoardingScreen(),));
+      MaterialPageRoute(builder:(context) =>  OnBoardingScreen(),));
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
       body:Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(AppAssets.logo),
               const SizedBox(height: 24,),
-              const Text(AppStrings.appName, 
-              style: TextStyle(fontSize: 40,
-              fontWeight: FontWeight.bold, 
-              color: AppColors.white),)
+               Text(AppStrings.appName, 
+              style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                fontSize: 40
+              ),)
             ],
           ),
         ),
