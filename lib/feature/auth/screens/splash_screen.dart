@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_app/core/utils/app_assets.dart';
-import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_string.dart';
 import 'package:to_do_app/feature/auth/presentation/screens/on_boarding_screen.dart';
 
@@ -21,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigate (){
     Future.delayed(const Duration(seconds: 5),(){
-      Navigator.pushReplacement(context, 
+      Navigator.push(context, 
       MaterialPageRoute(builder:(context) =>  OnBoardingScreen(),));
     });
   }
