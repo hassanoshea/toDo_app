@@ -1,15 +1,15 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:to_do_app/core/commons/commons';
-import 'package:to_do_app/core/utils/app_colors.dart';
-import 'package:to_do_app/core/utils/app_string.dart';
 import 'package:to_do_app/core/widgets/custom_button.dart';
 import 'package:to_do_app/feature/task/presentation/components/add_task_component.dart';
 import 'package:to_do_app/feature/task/presentation/cubit/cubit_state.dart';
 import 'package:to_do_app/feature/task/presentation/cubit/task_cubit.dart';
+
+import '../../../../../core/commons/commons.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_strings.dart';
 
 class AddTaskScreen extends StatelessWidget {
   const AddTaskScreen({super.key});
@@ -53,22 +53,22 @@ class AddTaskScreen extends StatelessWidget {
                     AddTaskComponent(
                       controller:
                           BlocProvider.of<TaskCubit>(context).titleController,
-                      tilte: AppStrings.title,
-                      hintText: AppStrings.titleHint,
+                      title: AppStrings.title,
+                      hint: AppStrings.titleHint,
                       validator: (val) {
                         if (val!.isEmpty) {
                           return AppStrings.tilteErrorMsg;
                         }
                         return null;
-                      },
+                      }, 
                     ),
                     SizedBox(height: 24.h),
                     //! Note
                     AddTaskComponent(
                       controller:
                           BlocProvider.of<TaskCubit>(context).noteController,
-                      tilte: AppStrings.note,
-                      hintText: AppStrings.noteHint,
+                      title: AppStrings.note,
+                      hint: AppStrings.noteHint,
                       validator: (val) {
                         if (val!.isEmpty) {
                           return AppStrings.noteErrorMsg;
@@ -79,8 +79,8 @@ class AddTaskScreen extends StatelessWidget {
                     SizedBox(height: 24.h),
                     //! Date
                     AddTaskComponent(
-                      tilte: AppStrings.date,
-                      hintText: DateFormat.yMd().format(cubit.currentDate),
+                      title: AppStrings.date,
+                      hint: DateFormat.yMd().format(cubit.currentDate),
                       suffixIcon: IconButton(
                         onPressed: () async {
                           BlocProvider.of<TaskCubit>(context).getDate(context);
@@ -90,7 +90,7 @@ class AddTaskScreen extends StatelessWidget {
                           color: AppColors.white,
                         ),
                       ),
-                      readOnly: true,
+                      readOnly: true, validator: (val) {  },
                     ),
                     SizedBox(height: 24.h),
                     //! Start - End Time
@@ -100,8 +100,8 @@ class AddTaskScreen extends StatelessWidget {
                         Expanded(
                           child: AddTaskComponent(
                             readOnly: true,
-                            tilte: AppStrings.startTime,
-                            hintText:
+                            title: AppStrings.startTime,
+                            hint:
                                 BlocProvider.of<TaskCubit>(context).startTime,
                             suffixIcon: IconButton(
                               onPressed: () async {
@@ -112,7 +112,7 @@ class AddTaskScreen extends StatelessWidget {
                                 Icons.timer_outlined,
                                 color: AppColors.white,
                               ),
-                            ),
+                            ), validator: (val) {  },
                           ),
                         ),
                         const SizedBox(
@@ -122,8 +122,8 @@ class AddTaskScreen extends StatelessWidget {
                         Expanded(
                           child: AddTaskComponent(
                             readOnly: true,
-                            tilte: AppStrings.endTime,
-                            hintText:
+                            title: AppStrings.endTime,
+                            hint:
                                 BlocProvider.of<TaskCubit>(context).endTime,
                             suffixIcon: IconButton(
                               onPressed: () async {
@@ -134,7 +134,7 @@ class AddTaskScreen extends StatelessWidget {
                                 Icons.timer_outlined,
                                 color: AppColors.white,
                               ),
-                            ),
+                            ), validator: (val) {  },
                           ),
                         ),
                       ],
