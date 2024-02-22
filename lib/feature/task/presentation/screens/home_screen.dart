@@ -94,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                           );
                         });
                   },
-                  child: TaskComponant()),
+                  child: const TaskComponant()),
             ],
           ),
         ),
