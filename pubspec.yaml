@@ -7,6 +7,7 @@ environment:
   sdk: '>=3.2.6 <4.0.0'
 
 dependencies:
+<<<<<<< HEAD
   cupertino_icons: ^1.0.2
   date_picker_timeline: ^1.2.5
   flutter:
@@ -20,11 +21,21 @@ dependencies:
   shared_preferences: ^2.2.0
   smooth_page_indicator: ^1.1.0
   sqflite: ^2.3.2
+=======
+  date_picker_timeline: ^1.2.5
+  flutter:
+    sdk: flutter
+  flutter_screenutil: ^5.9.0
+  get_it: ^7.6.7
+  intl: ^0.18.0
+  shared_preferences: ^2.2.2
+  smooth_page_indicator: ^1.1.0
+>>>>>>> 47d420bcc8accbe44dc28be324fb65d4ac19cf13
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true

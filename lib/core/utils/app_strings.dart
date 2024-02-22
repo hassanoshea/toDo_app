@@ -1,8 +1,9 @@
 class AppStrings {
+  
   static const String appName = 'ToDo';
   static const String skip = 'Skip';
   static const String next = 'Next';
-  static const String back = 'Back';
+  static const String back = 'back';
   static const String getStarted = 'Get Started';
   static const String onBoardingTitle1 = 'Manage your tasks';
   static const String onBoardingSubTitle1 = 'You can easily manage all of your daily tasks in Dome for FREE';
