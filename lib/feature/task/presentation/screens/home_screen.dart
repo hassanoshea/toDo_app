@@ -10,7 +10,7 @@ import 'package:to_do_app/core/widgets/custom_button.dart';
 import 'package:to_do_app/feature/task/datamodel/task_model.dart';
 import 'package:to_do_app/feature/task/presentation/cubit/cubit_state.dart';
 import 'package:to_do_app/feature/task/presentation/cubit/task_cubit.dart';
-import 'package:to_do_app/feature/task/presentation/screens/add_task_screen.dart';
+import 'package:to_do_app/feature/task/presentation/screens/add_task_screen/add_task_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -53,6 +53,7 @@ class HomeScreen extends StatelessWidget {
                       style: Theme.of(context).textTheme.displayLarge),
                   //date picker
                   DatePicker(
+                    height: 95,
                     DateTime.now(),
                     initialSelectedDate: DateTime.now(),
                     selectionColor: AppColors.primary,
@@ -175,7 +176,7 @@ class HomeScreen extends StatelessWidget {
         //fab
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            navigate(context: context, screen: const AddTaskScreen());
+            navigate(context: context, screen:  AddTaskScreen());
           },
           backgroundColor: AppColors.primary,
           child: const Icon(Icons.add),

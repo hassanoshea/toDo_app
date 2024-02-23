@@ -19,7 +19,6 @@ class TaskCubit extends Cubit<TaskState> {
       .format(DateTime.now().add(const Duration(minutes: 45)));
   int currentIndex = 0;
   TextEditingController titleController = TextEditingController();
-
   TextEditingController noteController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -30,7 +29,7 @@ class TaskCubit extends Cubit<TaskState> {
       context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
-      lastDate: DateTime(2025),
+      lastDate: DateTime(2030),
       // initialDatePickerMode: DatePickerMode.day,
       // initialEntryMode: DatePickerEntryMode.inputOnly,
     );
