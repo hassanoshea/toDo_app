@@ -105,6 +105,7 @@ class TaskCubit extends Cubit<TaskState> {
   }
 
   List<TaskModel> tasksList = [];
+  
   void insertTask() async {
     emit(InsertTaskLoadingState());
 

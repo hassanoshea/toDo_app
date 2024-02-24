@@ -16,9 +16,7 @@ class AddTaskScreen extends StatelessWidget {
   AddTaskScreen({super.key});
 
   final TextEditingController titleController = TextEditingController();
-
   final TextEditingController noteController = TextEditingController();
-
   late DateTime currentDate = DateTime.now();
 
   @override
