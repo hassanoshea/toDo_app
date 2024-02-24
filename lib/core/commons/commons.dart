@@ -22,7 +22,6 @@ void showToast({
 }
 
 enum ToastStates { error, success, warining }
-
 Color getState(ToastStates state) {
   switch (state) {
     case ToastStates.error:

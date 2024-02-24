@@ -25,11 +25,11 @@ class AppStrings {
   static const String createTask = 'Create task';
   static const String toDo = 'TODO';
   static const String completed = 'COMPLETED';
+  static const String addedSucessfully = 'Added Sucessfully';
   static const String taskCompleted  = 'Task Completed';
   static const String deleteTask  = 'Delete Task';
   static const String cancel  = 'Cancel';
   static const String onBoardingKey  = 'onBoaring';
-  static const String noteErrorMsg  = 'Enter Valid Note';
-  static const String tilteErrorMsg  = 'Enter Valid title';
+  static const String dataErrorMsg  = 'Title and Note are Required';
   
 }

@@ -11,9 +11,8 @@ import 'package:to_do_app/feature/task/presentation/cubit/cubit_state.dart';
 import 'package:to_do_app/feature/task/presentation/cubit/task_cubit.dart';
 import 'package:to_do_app/feature/task/presentation/screens/home_screen.dart';
 
-// ignore: must_be_immutable
 class AddTaskScreen extends StatelessWidget {
-  AddTaskScreen({super.key});
+  const AddTaskScreen({super.key});
 
 
   @override
@@ -37,26 +36,25 @@ class AddTaskScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24),
-          
             child: BlocBuilder<TaskCubit, TaskState>(
               builder: (context, state) {
                 final cubit = BlocProvider.of<TaskCubit>(context);
                 return Form(
-                  key: BlocProvider.of<TaskCubit>(context).formKey,
+                  key: cubit.formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Title
                       AddTaskComponent(
                           title: AppStrings.title,
-                          controller: BlocProvider.of<TaskCubit>(context).titleController,
+                          controller: cubit.titleController,
                           hint: AppStrings.titleHint),
                       SizedBox(height: 24.h),
                               
                       // Note
                       AddTaskComponent(
                           title: AppStrings.note,
-                          controller: BlocProvider.of<TaskCubit>(context).noteController,
+                          controller: cubit.noteController,
                           hint: AppStrings.noteHint),
                       SizedBox(height: 24.h),
                               
@@ -170,8 +168,15 @@ class AddTaskScreen extends StatelessWidget {
                         width: double.infinity,
                         child: CustomElevatedButton(
                             text: AppStrings.createTask, onPressed: () async {
-                              BlocProvider.of<TaskCubit>(context).insertTask();
-                              navigate(context: context, screen: const HomeScreen());
+                              if (cubit.titleController.text.isEmpty || cubit.noteController.text.isEmpty) {
+                                 ScaffoldMessenger.of(context).
+                                showSnackBar(const SnackBar(backgroundColor: AppColors.red,
+                                content: Text(AppStrings.dataErrorMsg),));
+                              }else{
+                                cubit.insertTask();
+                                showToast(message: AppStrings.addedSucessfully, state: ToastStates.success);
+                              navigate(context: context, screen: const HomeScreen()); 
+                              }
                             }),
                       ),
                     ],

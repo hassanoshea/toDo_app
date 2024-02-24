@@ -1,4 +1,3 @@
-// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -141,7 +140,6 @@ class TaskCubit extends Cubit<TaskState> {
           .toList();
       emit(GetDateSucessState());
     }).catchError((e) {
-      print(e.toString());
       emit(GetDateErrorState());
     });
   }
@@ -154,7 +152,6 @@ class TaskCubit extends Cubit<TaskState> {
       emit(UpdateTaskSucessState());
       getTasks();
     }).catchError((e) {
-      print(e.toString());
       emit(UpdateTaskErrorState());
     });
   }
@@ -167,7 +164,6 @@ class TaskCubit extends Cubit<TaskState> {
       emit(DeleteTaskSucessState());
       getTasks();
     }).catchError((e) {
-      print(e.toString());
       emit(DeleteTaskErrorState());
     });
   }

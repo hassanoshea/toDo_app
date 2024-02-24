@@ -14,10 +14,12 @@ import 'package:to_do_app/feature/task/presentation/cubit/task_cubit.dart';
 import 'package:to_do_app/feature/task/presentation/screens/add_task_screen/add_task_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final cubit = BlocProvider.of<TaskCubit>(context);
+
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -35,11 +37,11 @@ class HomeScreen extends StatelessWidget {
                       const Spacer(),
                       IconButton(
                         onPressed: () {
-                          BlocProvider.of<TaskCubit>(context).changeTheme();
+                          cubit.changeTheme();
                         },
                         icon: Icon(
                           Icons.mode_night,
-                          color: BlocProvider.of<TaskCubit>(context).isDark
+                          color: cubit.isDark
                               ? AppColors.white
                               : AppColors.background,
                         ),
@@ -64,18 +66,18 @@ class HomeScreen extends StatelessWidget {
                     dayTextStyle: Theme.of(context).textTheme.displayMedium!,
                     monthTextStyle: Theme.of(context).textTheme.displayMedium!,
                     onDateChange: (date) {
-                      BlocProvider.of<TaskCubit>(context).getSelectedDate(date);
+                    cubit.getSelectedDate(date);
                     },
                   ),
                    SizedBox(
                     height: 24.h),
 
                   //no tasks
-                  BlocProvider.of<TaskCubit>(context).tasksList.isEmpty
+                  cubit.tasksList.isEmpty
                       ? noTasksWidget(context)
                       : Expanded(
                           child: ListView.builder(
-                            itemCount: BlocProvider.of<TaskCubit>(context).tasksList
+                            itemCount: cubit.tasksList
                                 .length,
                             itemBuilder: (context, index) {
                               return InkWell(
@@ -90,9 +92,7 @@ class HomeScreen extends StatelessWidget {
                                           child: Column(
                                             children: [
                                               //taskCompleted
-                                              BlocProvider.of<TaskCubit>(context)
-                                                          .tasksList[index]
-                                                          .isCompleted == 1
+                                              cubit.tasksList[index].isCompleted == 1
                                                   ? Container()
                                                   : SizedBox(
                                                       height: 48.h,
@@ -101,16 +101,9 @@ class HomeScreen extends StatelessWidget {
                                                         text: AppStrings
                                                             .taskCompleted,
                                                         onPressed: () {
-                                                          BlocProvider.of<
-                                                                      TaskCubit>(context)
-                                                              .updateTask(BlocProvider
-                                                                      .of<TaskCubit>(
-                                                                          context)
-                                                                  .tasksList[
-                                                                      index]
-                                                                  .id);
-                                                          Navigator.pop(
-                                                              context);
+                                                          cubit.updateTask(cubit.tasksList[index].id);
+                                                                  showToast(message:AppStrings.completed, state: ToastStates.success);
+                                                          Navigator.pop(context);
                                                         },
                                                       ),
                                                     ),
@@ -127,13 +120,8 @@ class HomeScreen extends StatelessWidget {
                                                   backgroundColor:
                                                       AppColors.red,
                                                   onPressed: () {
-                                                    BlocProvider.of<TaskCubit>(
-                                                            context)
-                                                        .deleteTask(BlocProvider
-                                                                .of<TaskCubit>(
-                                                                    context)
-                                                            .tasksList[index]
-                                                            .id);
+                                                    cubit.deleteTask(cubit.tasksList[index].id);
+                                                    showToast(message:'Deleted', state: ToastStates.error);
                                                     Navigator.pop(context);
                                                   },
                                                 ),
@@ -161,8 +149,7 @@ class HomeScreen extends StatelessWidget {
                                   },
                                   child: TaskComponent(
                                     taskModel:
-                                        BlocProvider.of<TaskCubit>(context)
-                                            .tasksList[index],
+                                        cubit.tasksList[index],
                                   ));
                             },
                           ),
@@ -175,7 +162,7 @@ class HomeScreen extends StatelessWidget {
         //fab
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            navigate(context: context, screen: AddTaskScreen());
+            navigate(context: context, screen: const AddTaskScreen());
           },
           backgroundColor: AppColors.primary,
           child: const Icon(Icons.add),
