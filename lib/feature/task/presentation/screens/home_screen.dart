@@ -1,13 +1,14 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/core/commons/commons.dart';
 import 'package:to_do_app/core/utils/app_assets.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
 import 'package:to_do_app/core/widgets/custom_button.dart';
-import 'package:to_do_app/feature/task/datamodel/task_model.dart';
+import 'package:to_do_app/feature/task/presentation/components/task_component.dart';
 import 'package:to_do_app/feature/task/presentation/cubit/cubit_state.dart';
 import 'package:to_do_app/feature/task/presentation/cubit/task_cubit.dart';
 import 'package:to_do_app/feature/task/presentation/screens/add_task_screen/add_task_screen.dart';
@@ -45,12 +46,13 @@ class HomeScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  const SizedBox(
-                    height: 12,
-                  ),
+                   SizedBox(
+                    height: 12.h),
+
                   //Today
                   Text(AppStrings.today,
                       style: Theme.of(context).textTheme.displayLarge),
+
                   //date picker
                   DatePicker(
                     height: 95,
@@ -65,16 +67,15 @@ class HomeScreen extends StatelessWidget {
                       BlocProvider.of<TaskCubit>(context).getSelectedDate(date);
                     },
                   ),
-                  const SizedBox(
-                    height: 24,
-                  ),
+                   SizedBox(
+                    height: 24.h),
+
                   //no tasks
                   BlocProvider.of<TaskCubit>(context).tasksList.isEmpty
                       ? noTasksWidget(context)
                       : Expanded(
                           child: ListView.builder(
-                            itemCount: BlocProvider.of<TaskCubit>(context)
-                                .tasksList
+                            itemCount: BlocProvider.of<TaskCubit>(context).tasksList
                                 .length,
                             itemBuilder: (context, index) {
                               return InkWell(
@@ -92,8 +93,7 @@ class HomeScreen extends StatelessWidget {
                                               BlocProvider.of<TaskCubit>(
                                                               context)
                                                           .tasksList[index]
-                                                          .isCompleted ==
-                                                      1
+                                                          .isCompleted == 1
                                                   ? Container()
                                                   : SizedBox(
                                                       height: 48,
@@ -103,8 +103,7 @@ class HomeScreen extends StatelessWidget {
                                                             .taskCompleted,
                                                         onPressed: () {
                                                           BlocProvider.of<
-                                                                      TaskCubit>(
-                                                                  context)
+                                                                      TaskCubit>(context)
                                                               .updateTask(BlocProvider
                                                                       .of<TaskCubit>(
                                                                           context)
@@ -143,6 +142,7 @@ class HomeScreen extends StatelessWidget {
                                               const SizedBox(
                                                 height: 24,
                                               ),
+                                              
                                               //cancel
                                               SizedBox(
                                                 height: 48,
@@ -176,7 +176,7 @@ class HomeScreen extends StatelessWidget {
         //fab
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            navigate(context: context, screen:  AddTaskScreen());
+            navigate(context: context, screen: AddTaskScreen());
           },
           backgroundColor: AppColors.primary,
           child: const Icon(Icons.add),
@@ -200,104 +200,6 @@ class HomeScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.displayMedium,
         ),
       ],
-    );
-  }
-}
-
-class TaskComponent extends StatelessWidget {
-  const TaskComponent({
-    super.key,
-    required this.taskModel,
-  });
-  final TaskModel taskModel;
-  Color getColor(index) {
-    switch (index) {
-      case 0:
-        return AppColors.red;
-      case 1:
-        return AppColors.green;
-      case 2:
-        return AppColors.blueGrey;
-      case 3:
-        return AppColors.blue;
-      case 4:
-        return AppColors.orange;
-      case 5:
-        return AppColors.purple;
-      default:
-        return AppColors.grey;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 132,
-      padding: const EdgeInsets.all(8),
-      decoration: BoxDecoration(
-        color: getColor(taskModel.color),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      margin: const EdgeInsets.only(bottom: 16),
-      child: Row(
-        children: [
-          //column
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                //title
-                Text(
-                  taskModel.title,
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-                const SizedBox(height: 8),
-
-                //row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.timer,
-                      color: AppColors.white,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      '${taskModel.startTime} - ${taskModel.endTime}',
-                      style: Theme.of(context).textTheme.displayMedium,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                //note
-                Text(
-                  taskModel.note,
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-              ],
-            ),
-          ),
-
-          //divider
-          Container(
-            height: 75,
-            width: 1,
-            color: Colors.white,
-            margin: const EdgeInsets.only(right: 10),
-          ),
-          // const SizedBox(width: 10,),
-          //text
-          RotatedBox(
-            quarterTurns: 3,
-            child: Text(
-              taskModel.isCompleted == 1
-                  ? AppStrings.completed
-                  : AppStrings.toDo,
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
-          )
-        ],
-      ),
     );
   }
 }

@@ -11,6 +11,7 @@ import 'package:to_do_app/feature/task/presentation/cubit/cubit_state.dart';
 import 'package:to_do_app/feature/task/presentation/cubit/task_cubit.dart';
 import 'package:to_do_app/feature/task/presentation/screens/home_screen.dart';
 
+// ignore: must_be_immutable
 class AddTaskScreen extends StatelessWidget {
   AddTaskScreen({super.key});
 
@@ -117,6 +118,7 @@ class AddTaskScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 24.h),
+
                     //color
                     SizedBox(
                       height: 68,
@@ -161,6 +163,7 @@ class AddTaskScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+
                     //add task button
                     SizedBox(
                       height: 90.h,
