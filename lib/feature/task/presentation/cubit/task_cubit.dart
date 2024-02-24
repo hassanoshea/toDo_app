@@ -30,8 +30,6 @@ class TaskCubit extends Cubit<TaskState> {
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime(2030),
-      // initialDatePickerMode: DatePickerMode.day,
-      // initialEntryMode: DatePickerEntryMode.inputOnly,
     );
 
     if (pickedDate != null) {
@@ -121,18 +119,6 @@ class TaskCubit extends Cubit<TaskState> {
           color: currentIndex,
         ),
       );
-      //! to make screen wait 1 second
-      //  await  Future.delayed(const Duration(seconds: 3));
-      //   tasksList.add(TaskModel(
-      //     id: '1',
-      //     date: DateFormat.yMd().format(currentDate),
-      //     title: titleController.text,
-      //     note: noteController.text,
-      //     startTime: startTime,
-      //     endTime: endTime,
-      //     isCompleted: false,
-      //     color: currentIndex,
-      //   ));
       titleController.clear();
       noteController.clear();
       emit(InsertTaskSucessState());
