@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_string.dart';
 import 'package:to_do_app/feature/task/datamodel/task_model.dart';
@@ -30,7 +31,7 @@ class TaskComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 132,
+      height: 133.h,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: getColor(taskModel.color),
@@ -49,7 +50,7 @@ class TaskComponent extends StatelessWidget {
                   taskModel.title,
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
 
                 //row
                 Row(
@@ -59,14 +60,16 @@ class TaskComponent extends StatelessWidget {
                       Icons.timer,
                       color: AppColors.white,
                     ),
-                    const SizedBox(width: 8),
+                    SizedBox(width: 8.w),
+
                     Text(
                       '${taskModel.startTime} - ${taskModel.endTime}',
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
                   ],
                 ),
-                const SizedBox(height: 8),
+                SizedBox(height: 8.h),
+
                 //note
                 Text(
                   taskModel.note,
@@ -78,7 +81,7 @@ class TaskComponent extends StatelessWidget {
 
           //divider
           Container(
-            height: 75,
+            height: 75.h,
             width: 1,
             color: Colors.white,
             margin: const EdgeInsets.only(right: 10),

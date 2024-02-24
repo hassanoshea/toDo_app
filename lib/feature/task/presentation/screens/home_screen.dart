@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
 
                   //date picker
                   DatePicker(
-                    height: 95,
+                    height: 95.h,
                     DateTime.now(),
                     initialSelectedDate: DateTime.now(),
                     selectionColor: AppColors.primary,
@@ -85,18 +85,17 @@ class HomeScreen extends StatelessWidget {
                                       builder: (context) {
                                         return Container(
                                           padding: const EdgeInsets.all(24),
-                                          height: 240,
+                                          height: 240.h,
                                           color: AppColors.deepGrey,
                                           child: Column(
                                             children: [
                                               //taskCompleted
-                                              BlocProvider.of<TaskCubit>(
-                                                              context)
+                                              BlocProvider.of<TaskCubit>(context)
                                                           .tasksList[index]
                                                           .isCompleted == 1
                                                   ? Container()
                                                   : SizedBox(
-                                                      height: 48,
+                                                      height: 48.h,
                                                       width: double.infinity,
                                                       child: CustomButton(
                                                         text: AppStrings
@@ -115,8 +114,8 @@ class HomeScreen extends StatelessWidget {
                                                         },
                                                       ),
                                                     ),
-                                              const SizedBox(
-                                                height: 24,
+                                              SizedBox(
+                                                height: 24.h,
                                               ),
 
                                               //deleteTask
@@ -142,7 +141,7 @@ class HomeScreen extends StatelessWidget {
                                               const SizedBox(
                                                 height: 24,
                                               ),
-                                              
+
                                               //cancel
                                               SizedBox(
                                                 height: 48,
