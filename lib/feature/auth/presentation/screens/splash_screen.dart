@@ -38,21 +38,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(AppAssets.logo),
-          const SizedBox(height: 24),
-          Text(
-            AppStrings.appName,
-            style: Theme.of(context)
-                .textTheme
-                .displayLarge!
-                .copyWith(fontSize: 40),
-          )
-        ],
-      )),
+      backgroundColor:Colors.black,
+      body: Center (child: Image.asset(AppAssets.logo),)
     );
   }
 }
