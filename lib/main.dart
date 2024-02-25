@@ -16,7 +16,7 @@ void main() async {
 
   runApp(
     BlocProvider(
-      create: (context) => TaskCubit()..getTheme()..getTasks(),
+      create: (context) => TaskCubit()..getTasks(),
       child: const MyApp(),
     ),
   );

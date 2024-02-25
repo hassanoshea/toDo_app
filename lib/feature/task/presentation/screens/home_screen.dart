@@ -42,8 +42,8 @@ class HomeScreen extends StatelessWidget {
                         icon: Icon(
                           Icons.mode_night,
                           color: cubit.isDark
-                              ? AppColors.white
-                              : AppColors.background,
+                              ? AppColors.background
+                              : AppColors.white,
                         ),
                       )
                     ],
@@ -132,7 +132,7 @@ class HomeScreen extends StatelessWidget {
 
                                               //cancel
                                               SizedBox(
-                                                height: 48,
+                                                height: 48.h,
                                                 width: double.infinity,
                                                 child: CustomButton(
                                                   text: AppStrings.cancel,

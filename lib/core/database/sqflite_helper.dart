@@ -8,14 +8,14 @@ class SqfliteHelper {
   //2.create table
   //3.CRUD => create - read - update - delete
 
-  //! initDatabase
+  // initDatabase
   void intiDB() async {
     //step 1 => Create database
     await openDatabase(
       'tasks.db',
       version: 1,
       onCreate: (Database db, int v) async {
-        //step 2 => create table
+    //step 2 => create table
         return await db.execute('''
       CREATE TABLE Tasks (
         id INTEGER PRIMARY KEY ,
@@ -34,12 +34,12 @@ class SqfliteHelper {
     ).then((value) => db = value);
   }
 
-  //!get
+  //!get = read
   Future<List<Map<String, dynamic>>> getFromDB() async {
     return await db.rawQuery('SELECT * FROM Tasks');
   }
 
-  //! insert
+  //!insert = creat
   Future<int> insertToDB(TaskModel model) async {
     return await db.rawInsert('''
       INSERT INTO Tasks( 
@@ -49,7 +49,7 @@ class SqfliteHelper {
        '${model.endTime}','${model.color}','${model.isCompleted}')''');
   }
 
-  //! update
+  //!update
   Future<int> updatedDB(int id) async {
     return await db.rawUpdate('''
     UPDATE Tasks
@@ -58,7 +58,7 @@ class SqfliteHelper {
    ''', [1, id]);
   }
 
-  //! delete
+  //!delete
   Future<int> deleteFromDB(int id) async {
     return await db.rawDelete(
       '''DELETE FROM Tasks WHERE id = ?''',

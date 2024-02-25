@@ -20,6 +20,7 @@ class TaskCubit extends Cubit<TaskState> {
   TextEditingController titleController = TextEditingController();
   TextEditingController noteController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  List<TaskModel> tasksList = [];
 
   //get Date From User
   void getDate(context) async {
@@ -96,16 +97,12 @@ class TaskCubit extends Cubit<TaskState> {
   void getSelectedDate(date) {
     emit(GetSelectedDateLoadingState());
     selctedDate = date;
-
     emit(GetSelectedDateSucessState());
     getTasks();
   }
-
-  List<TaskModel> tasksList = [];
   
   void insertTask() async {
     emit(InsertTaskLoadingState());
-
     try {
       await sl<SqfliteHelper>().insertToDB(
         TaskModel(
@@ -129,18 +126,17 @@ class TaskCubit extends Cubit<TaskState> {
 
 //!get Tasks
   void getTasks() async {
-    emit(GetDateLoadingState());
+    emit(GetTaskLoadingState());
     await sl<SqfliteHelper>().getFromDB().then((value) {
-      tasksList = value
-          .map((e) => TaskModel.fromJson(e))
+      tasksList = value.map((e) => TaskModel.fromJson(e))
           .toList()
           .where(
             (element) => element.date == DateFormat.yMd().format(selctedDate),
           )
           .toList();
-      emit(GetDateSucessState());
+      emit(GetTaskSucessState());
     }).catchError((e) {
-      emit(GetDateErrorState());
+      emit(GetTaskErrorState());
     });
   }
 

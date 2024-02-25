@@ -9,21 +9,20 @@ import 'package:to_do_app/core/widgets/custom_elevated_button.dart';
 import 'package:to_do_app/core/widgets/custom_text_button.dart';
 import 'package:to_do_app/feature/auth/data/model/on_boarding_model.dart';
 import 'package:to_do_app/feature/task/presentation/screens/home_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
- // ignore: must_be_immutable
- class  OnBoaringScreens extends StatelessWidget {
-
+// ignore: must_be_immutable
+class OnBoaringScreens extends StatelessWidget {
   OnBoaringScreens({super.key});
 
   PageController controller = PageController();
-  
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(20),
           child: PageView.builder(
               controller: controller,
               itemCount: OnBoardingModel.onBoardingList.length,
@@ -41,19 +40,17 @@ import 'package:to_do_app/feature/task/presentation/screens/home_screen.dart';
                                   controller.jumpToPage(2);
                                 },
                               )
-                            : const SizedBox(
-                                height: 16,
-                              ),
+                            : SizedBox(height: 10.h),
                       ],
                     ),
                     index != 2
-                        ? const SizedBox(height: 30)
-                        : const SizedBox(height: 60),
+                        ? SizedBox(height: 20.h)
+                        : SizedBox(height: 50.h),
                     //image
                     Center(
                         child: Image.asset(
-                            OnBoardingModel.onBoardingList[index].imagePath)),
-                    const SizedBox(height: 16),
+                            OnBoardingModel.onBoardingList[index].imagePath,)),
+                    SizedBox(height: 14.h),
                     //dots
                     Center(
                       child: SmoothPageIndicator(
@@ -67,7 +64,7 @@ import 'package:to_do_app/feature/task/presentation/screens/home_screen.dart';
                         ),
                       ),
                     ),
-                    const SizedBox(height: 52),
+                    SizedBox(height: 25.h),
                     //title
                     Center(
                       child: Text(
@@ -75,14 +72,14 @@ import 'package:to_do_app/feature/task/presentation/screens/home_screen.dart';
                         style: Theme.of(context).textTheme.displayLarge,
                       ),
                     ),
-                    const SizedBox(height: 42),
+                    SizedBox(height: 35.h),
                     //subTitle
                     Text(
                       OnBoardingModel.onBoardingList[index].subTitle,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
-                    const SizedBox(height: 90),
+                    SizedBox(height: 90.h),
 
                     //buttons
                     Row(
@@ -139,5 +136,3 @@ import 'package:to_do_app/feature/task/presentation/screens/home_screen.dart';
     );
   }
 }
-
-
