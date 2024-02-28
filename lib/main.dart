@@ -11,8 +11,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   await setup();
-  await sl<CacheHelper>().init();
   sl<SqfliteHelper>().intiDB();
+  await sl<CacheHelper>().init();
+  
 
   runApp(
     BlocProvider(

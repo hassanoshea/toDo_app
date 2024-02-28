@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:to_do_app/core/commons/commons.dart';
-import 'package:to_do_app/core/utils/app_assets.dart';
 import 'package:to_do_app/core/utils/app_colors.dart';
 import 'package:to_do_app/core/utils/app_strings.dart';
 import 'package:to_do_app/core/widgets/custom_button.dart';
+import 'package:to_do_app/feature/task/presentation/components/no_tasks.dart';
 import 'package:to_do_app/feature/task/presentation/components/task_component.dart';
 import 'package:to_do_app/feature/task/presentation/cubit/cubit_state.dart';
 import 'package:to_do_app/feature/task/presentation/cubit/task_cubit.dart';
@@ -171,21 +171,5 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Column noTasksWidget(BuildContext context) {
-    return Column(
-      children: [
-        Image.asset(AppAssets.noTasks),
-        Text(
-          AppStrings.noTaskTitle,
-          style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                fontSize: 24,
-              ),
-        ),
-        Text(
-          AppStrings.noTaskSubTitle,
-          style: Theme.of(context).textTheme.displayMedium,
-        ),
-      ],
-    );
-  }
+ 
 }
